@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.nms.mapper.AdminMapper">
+        <insert id="add" parameterType="Admin" >
+            insert into admin ( useraccount,userpass,userphone,username,usertype,useremail,per_certification ) values (#{useraccount},#{userpass},#{userphone},#{username},#{usertype},#{useremail},#{per_certification} )   
+        </insert>
+         
+        <delete id="delete" parameterType="Admin" >
+            delete from admin where id= #{id}  
+        </delete>
+         
+        <select id="get" parameterType="_int" resultType="Admin">
+            select * from   admin  where id= #{id}   
+        </select>
+ 
+        <update id="update" parameterType="Admin" >
+            update admin set useraccount=#{useraccount},userpass=#{userpass},userphone=#{userphone},username=#{username},usertype=#{usertype},useremail=#{useremail},per_certification=#{per_certification},outdate=#{outdate},signature=#{signature}  where id=#{id}   
+        </update>
+        
+        <update id="reset_pass" parameterType="Admin" >
+            update admin set userpass=#{userpass} where id=#{id}   
+        </update>
+        
+        <select id="list" resultType="Admin">
+            select * from   admin     
+        </select>    
+        
+        <select id="getuser_login" parameterType="Admin" resultType="Admin">
+            select * from   admin  where useraccount= #{useraccount} and userpass= #{userpass}  
+        </select>
+        
+        <select id="getuser_findpass" parameterType="Admin" resultType="Admin">
+            select * from   admin  where useraccount= #{useraccount} and useremail= #{useremail}  
+        </select>
+    </mapper>
